@@ -46,17 +46,17 @@ const TextInputArea = () => {
 
       if(!result.ok) throw new Error(`Error with Server ${result.status}`);
 
-      const dataJson = await result.json();
+      const dataJson = await result.text();
       console.log("HIIIIIIIIIIIIIdataJson"); // DEBUG LINE
 
-      console.log(dataJson); // DEBUG LINE
+      console.log(result); // DEBUG LINE
 
-      const dataString = JSON.parse(dataJson);
-      console.log(dataString.text); // DEBUG LINE
+      // const dataString = JSON.parse(dataJson);
+      // console.log(dataString.text); // DEBUG LINE
 
       const botMsg = {
         role: 'chatBot' as const,
-        msg: dataString.text || '[No response]',
+        msg: dataJson || '[No response]',
       };
 
       setMsg((prev) => [...prev, botMsg]);
