@@ -25,7 +25,9 @@ const TextInputArea = () => {
 //=============== N8N INTEGRATION LOGIC =======================
   
   const handleSubmittion = async (e: { preventDefault: () => void; })=>{
-    
+      e.preventDefault(); // important to prevent default form reload
+
+    console.log("ON SUBMIT");
     if(!input.trim()) return;
 
     // USERS MESSAGES
@@ -45,10 +47,16 @@ const TextInputArea = () => {
       if(!result.ok) throw new Error(`Error with Server ${result.status}`);
 
       const dataJson = await result.json();
-      
+      console.log("HIIIIIIIIIIIIIdataJson"); // DEBUG LINE
+
+      console.log(dataJson); // DEBUG LINE
+
+      const dataString = JSON.parse(dataJson);
+      console.log(dataString.text); // DEBUG LINE
+
       const botMsg = {
         role: 'chatBot' as const,
-        msg: dataJson.reply || '[No response]',
+        msg: dataString.text || '[No response]',
       };
 
       setMsg((prev) => [...prev, botMsg]);
@@ -82,7 +90,11 @@ const TextInputArea = () => {
       </div>
 
       {/* Input Area */}
-      <form onSubmit={handleSubmittion} className="w-full p-4 bg-base-100 border border-base-300 rounded-2xl enabled:border-2 focus-within:border-2 hover:border-2">
+      <form 
+            id="chat-form"
+            onSubmit={handleSubmittion} 
+            className="w-full p-4 bg-base-100 border border-base-300 rounded-2xl enabled:border-2 focus-within:border-2 hover:border-2">
+
         <div className="flex items-center gap-2">
           <input
             type="text"
