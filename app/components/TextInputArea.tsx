@@ -77,19 +77,19 @@ const TextInputArea = () => {
       {msg.map((msg, index)=>
         <div 
             key={index} 
-            className= {` m-6 rounded-xl text-white whitespace-pre-line ${
+            className= {` m-6 rounded-xl text-neutral-content whitespace-pre-line ${
     msg.role === 'user'
       ? ' chat chat-end rounded-br-none'
       : ' chat chat-start rounded-bl-none'}`}>
           <div className={`chat chat-bubble rounded-2xl 
                 ${msg.role === 'user'
-                ?'bg-blue-950'
-                : 'bg-gray-800'} `}>{msg.msg}</div>
+                ?'bg-neutral'
+                : 'bg'} `}>{msg.msg}</div>
         </div>
       )}
       {loading&& (
         <div className="chat chat-start">
-          <span className="loading chat-bubble loading-dots">...</span>
+          <span className="loading chat-bubble loading-dots"></span>
         </div>
       )}
       </div>
@@ -100,10 +100,10 @@ const TextInputArea = () => {
             onSubmit={handleSubmittion} 
             className="w-full p-4 bg-base-100 border border-base-300 rounded-2xl enabled:border-2 focus-within:border-2 hover:border-2 sticky">
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 sticky">
           <input
             type="text"
-            placeholder="How may I assist you this fine day?"
+            placeholder="Enter your query here"
             className="input  w-full"
             value={input}
             onChange={(e) => setInput(e.target.value)}

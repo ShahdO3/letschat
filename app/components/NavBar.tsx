@@ -1,19 +1,20 @@
 'use client';
 
 import React from 'react'
+import ThemeSwitcher from './ThemeSwitcher';
 
 const NavBar = () => {
   return (
-    <div className="navbar bg-base-300 shadow-lg rounded-xl p-2 mb-10 hover:bg-black">
+    <div className="navbar shadow-lg rounded-xl p-2 mb-10 hover:bg-accent">
         <div className='navbar-start'></div>
 
         <div className="navbar-center ">
             <button className='btn btn-ghost rounded-2xl'>
-                Welcome to Let's Chat
+                Morticia Your Medieval Companion
             </button>
         </div>
         
-        <div className='navbar-end'></div>
+        <div className='navbar-end'> <ThemeSwitcher/></div>
     </div>
   )
 }

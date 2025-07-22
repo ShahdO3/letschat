@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: lemonade, forest;
+  themes: lemonade, forest, pastel;
 }
 :root {
   --background: #000000;
@@ -16,8 +16,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0e071b;
-    --foreground: #ffffff;
+    --background: --color-background;
+    --foreground: --color-foreground;
   }
 }
 
