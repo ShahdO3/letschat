@@ -1,7 +1,7 @@
 'use client';
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
-// n8n webhook URL= "http://localhost:5678/webhook/chatbot"
+const localWebhookUrl = 'http://localhost:5678/webhook/chatbot';
 
 const webhookUrl = 'https://shahd303.app.n8n.cloud/webhook/chatbot';
 
@@ -21,8 +21,22 @@ const TextInputArea = () => {
   // For loading while the msg gets sent back and for to n8n
   const [loading, setLoading] = useState(false);
 
+// ============= SCROLLING AUTOMATICALLY ========================
 
-//=============== N8N INTEGRATION LOGIC =======================
+  // To smoothly scroll down on new message
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
+
+  useEffect(() => {
+    scrollToBottom()
+  }, [msg]);
+
+// =================================================================
+
+//================== N8N INTEGRATION LOGIC =========================
   
   const handleSubmittion = async (e: { preventDefault: () => void; })=>{
       e.preventDefault(); // important to prevent default form reload
@@ -81,10 +95,12 @@ const TextInputArea = () => {
     msg.role === 'user'
       ? ' chat chat-end rounded-br-none'
       : ' chat chat-start rounded-bl-none'}`}>
+        
           <div className={`chat chat-bubble rounded-2xl 
                 ${msg.role === 'user'
-                ?'bg-neutral'
-                : 'bg'} `}>{msg.msg}</div>
+                ?'bg-neutral text-neutral-content'
+                : 'bg-base-300 text-base-content'} `}>{msg.msg}</div>
+          <div ref={messagesEndRef} />
         </div>
       )}
       {loading&& (
@@ -98,7 +114,7 @@ const TextInputArea = () => {
       <form 
             id="chat-form"
             onSubmit={handleSubmittion} 
-            className="w-full p-4 bg-base-100 border border-base-300 rounded-2xl enabled:border-2 focus-within:border-2 hover:border-2 sticky">
+            className="w-full p-2 bg-base-100 border border-base-300 rounded-2xl enabled:border-2 focus-within:border-2 hover:border-2 sticky">
 
         <div className="flex items-center gap-2 sticky">
           <input
@@ -110,7 +126,7 @@ const TextInputArea = () => {
           />
           <button 
                 type="submit" 
-                className="btn btn-primary rounded-2xl hover:border-2"
+                className="btn btn-neutral-800 rounded-2xl hover:border-2"
                 disabled={loading}>
             Send
           </button>
