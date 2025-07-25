@@ -91,10 +91,25 @@ const TextInputArea = () => {
         <div 
             key={index} 
             className= {` m-6 rounded-xl text-neutral-content whitespace-pre-line ${
-    msg.role === 'user'
-      ? ' chat chat-end rounded-br-none'
-      : ' chat chat-start rounded-bl-none'}`}>
-        
+            msg.role === 'user'
+              ? ' chat chat-end rounded-br-none'
+              : ' chat chat-start rounded-bl-none'}`}>
+                
+        {/* ============ AVATAR ICON ============== */}
+        {msg.role === 'chatBot'?          
+          <div className="chat-image avatar">
+            <div className="w-10 rounded-full">
+              <img
+                alt="avatar"
+                src="/witch.png"
+              />
+            </div>
+          </div>
+          : <div/>
+        }
+
+        {/* ======================================= */}
+
           <div className={`chat chat-bubble rounded-2xl 
                 ${msg.role === 'user'
                 ?'bg-neutral text-neutral-content'
@@ -104,7 +119,13 @@ const TextInputArea = () => {
       )}
       {loading&& (
         <div className="chat chat-start">
-          <span className="loading chat-bubble loading-dots"></span>
+          {/* <span className="loading chat-bubble loading-dots"></span> */}
+          <div className="typing-stars" aria-label="Loading...">
+            <span className="star">✧</span>
+            <span className="star">✧</span>
+            <span className="star">✧</span>
+          </div>
+
         </div>
       )}
       </div>

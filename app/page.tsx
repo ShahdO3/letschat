@@ -8,16 +8,17 @@ import paper from "../public/light-paper-fibers.png"
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 min-h-screen bg-base-200">
-
+    <div 
+      className="flex flex-col flex-1 min-h-screen 
+        h-full w-full bg-base-200">
       <Image
-        src={paper}
-        alt="Cover Image"
-        className="object-cover min-h-screen opacity-25"
-        fill
-      />
+      src={paper}
+      alt="Cover Image"
+      className="object-cover opacity-25"
+      fill/>
       <NavBar/>
       <TextInputArea/>
+      
     </div>
   );
 }

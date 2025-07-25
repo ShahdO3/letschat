@@ -9,24 +9,25 @@ import Image from 'next/image';
 
 const NavBar = () => {
   return (
-    <div className="flex navbarshadow-lg rounded-xl p-2 bg-neutral hover:bg-base-300">
+    <nav className="flex navbar shadow-lg rounded-xl 
+      p-2 bg-neutral hover:bg-base-300">
    
         <Image 
           src="/medeivalBorder3.png" 
           alt='border'
-          className="opacity-25"
+          className="bg-repeat opacity-25"
           fill/>
           
       <div className='navbar-start'>
       </div>
       <div className="navbar-center ">
-        <button className='btn btn-ghost btn-neutral rounded-2xl text-neutral-content'>
+        <button className='rounded-2xl text-neutral-content flicker-text'>
             Morticia Your Medieval Companion
         </button>
       </div>
         
       <div className='navbar-end'> <ThemeSwitcher/></div>
-    </div>
+    </nav>
   )
 }
 

@@ -25,8 +25,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-  background-image: url("/public/light-paper-fibers.png");
-  background-size: cover;
+  position: relative;
 }
 
 .bg-img{
@@ -38,5 +37,82 @@ body {
     object-fit: cover;
     z-index: -1;
 }
+.glow {
+  text-shadow: 0 0 5px #ffffffaa, 0 0 10px #8effff88;
+}
+.flicker-text {
+  color: #fff;
+  text-shadow:
+    0 0 2px #fff,
+    0 0 10px #e7d6a3,
+    0 0 20px #e7d6a3,
+    0 0 30px #e7d6a3;
+  animation: flicker 20s infinite;
+}
+@keyframes flicker {
+  0%   { opacity: 1; text-shadow: 0 0 2px #fff, 0 0 10px #e7d6a3, 0 0 20px #e7d6a3; }
+  5%   { opacity: 0.8; text-shadow: none; }
+  10%  { opacity: 1; text-shadow: 0 0 10px #e7d6a3; }
+  15%  { opacity: 0.6; text-shadow: 0 0 5px #e7d6a3; }
+  25%  { opacity: 1; text-shadow: 0 0 30px #e7d6a3; }
+  40%  { opacity: 0.9; text-shadow: 0 0 15px #e7d6a3; }
+  50%  { opacity: 0.5; text-shadow: none; }
+  60%  { opacity: 1; text-shadow: 0 0 20px #e7d6a3; }
+  75%  { opacity: 0.8; text-shadow: 0 0 10px #e7d6a3; }
+  100% { opacity: 1; text-shadow: 0 0 30px #e7d6a3, 0 0 50px #e7d6a3; }
+}
+
+.typing-stars {
+  display: flex;
+  gap: 0.3rem;
+  font-size: 1.5rem;
+  color: #e0e0ff;
+  animation: floatStars 3s ease-in-out infinite;
+}
+
+.typing-stars .star {
+  animation: starPulse 1.5s infinite ease-in-out;
+}
+
+.typing-stars .star:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.typing-stars .star:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes starPulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(0.9);
+    text-shadow: 0 0 2px #fff, 0 0 4px #9fafff;
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+    text-shadow: 0 0 4px #fff, 0 0 10px #a7c7ff;
+  }
+}
+
+@keyframes floatStars {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+.paperOverlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-repeat: repeat;
+  background-image: url("/public/light-paper-fibers.png");
+  opacity: 100;
+  pointer-events: none;
+}
+
 
 

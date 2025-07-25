@@ -34,6 +34,7 @@ export default function RootLayout({
       <body
         className={`${macondoSwashCaps.className} flex flex-col min-h-screen`}>
         <main className="flex flex-col">{children}</main>
+        <div className="paperOverlay"/>
       </body>
     </html>
   );
