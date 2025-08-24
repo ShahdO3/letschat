@@ -52,7 +52,7 @@ const TextInputArea = () => {
 
     // Sending msg to n8n
     try{
-      const result = await fetch(webhookUrl,{
+      const result = await fetch(localWebhookUrl,{
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: input }),
